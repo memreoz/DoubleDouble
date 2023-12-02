@@ -1,0 +1,40 @@
+Sub Delta()
+'
+' Delta Macro
+'
+Dim intCount As Integer
+Dim intCol As Integer
+
+For intCol = 0 To 90 Step 10
+    For intCount = 0 To 90 Step 10
+            
+            Sheets("DD").Select
+            Range("C15").Select
+            ActiveCell.FormulaR1C1 = intCount
+            Range("E15").Select
+            ActiveCell.FormulaR1C1 = intCol
+            
+            'A11'
+            Sheets("Auto-Laminate").Select
+            Range("N9").Select 'N9 A11 in kopyalandığı cell dir'
+            Selection.Copy
+            Range("C10").Offset(intCount / 10, intCol / 10).Select 'C10 A11 matrisinin ilk cell idir'
+            Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+                :=False, Transpose:=False
+                
+            'D66'
+            
+            Sheets("Auto-Laminate").Select
+            Range("N26").Select 'N26 D66 in kopyalandığı cell dir'
+            Selection.Copy
+            Range("C27").Offset(intCount / 10, intCol / 10).Select 'C27 D66 matrisinin ilk cell idir'
+            Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+                :=False, Transpose:=False
+    
+    Next intCount
+    
+Next intCol
+
+End Sub
+
+
